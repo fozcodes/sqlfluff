@@ -8431,7 +8431,7 @@ class CreateExternalTableSegment(BaseSegment):
             Sequence(
                 "TABLE_FORMAT",
                 Ref("EqualsSegment"),
-                "DELTA",
+                OneOf("DELTA", Ref("QuotedLiteralSegment")),
             ),
             Sequence(
                 Ref.keyword("WITH", optional=True),

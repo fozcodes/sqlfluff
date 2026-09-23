@@ -3,7 +3,7 @@
 # computed by SQLFluff when running the tests. Please run
 # `python test/generate_parse_fixture_yml.py`  to generate them after adding or
 # altering SQL files.
-_hash: 2a05bcff4cb0c0b6441515708d341eb4ce0907562b46ef06b0de3cb0f9398eda
+_hash: 52aac5553fa46218798c8d71a8f9967ead076ce7925e4f25b80a4e160e3d6a9f
 file:
 - statement:
     create_external_table_statement:
@@ -639,6 +639,38 @@ file:
     - comparison_operator:
         raw_comparison_operator: '='
     - keyword: DELTA
+- statement_terminator: ;
+- statement:
+    create_external_table_statement:
+    - keyword: CREATE
+    - keyword: EXTERNAL
+    - keyword: TABLE
+    - table_reference:
+        naked_identifier: quoted_delta_external_table
+    - keyword: LOCATION
+    - comparison_operator:
+        raw_comparison_operator: '='
+    - stage_path: '@example_stage/delta/'
+    - keyword: PARTITION_TYPE
+    - comparison_operator:
+        raw_comparison_operator: '='
+    - keyword: USER_SPECIFIED
+    - keyword: FILE_FORMAT
+    - comparison_operator:
+        raw_comparison_operator: '='
+    - file_format_segment:
+        bracketed:
+          start_bracket: (
+          parquet_file_format_type_parameters:
+            keyword: TYPE
+            comparison_operator:
+              raw_comparison_operator: '='
+            file_type: PARQUET
+          end_bracket: )
+    - keyword: TABLE_FORMAT
+    - comparison_operator:
+        raw_comparison_operator: '='
+    - quoted_literal: "'DELTA'"
 - statement_terminator: ;
 - statement:
     create_external_table_statement:
